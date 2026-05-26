@@ -9,7 +9,7 @@ import {
   customerSearches,
   supplierIds,
 } from "../common/meta";
-import { prisma } from "../../prisma.config";
+import { prisma } from "../../prisma";
 
 bench("Prisma ORM Customers: getAll", async () => {
   await prisma.customer.findMany();

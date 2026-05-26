@@ -45,7 +45,7 @@ import {
   supplierIds,
 } from "./meta";
 import { createDockerDBs, ports, deleteDockerDBs, DockerDBs } from "@/utils";
-import { prisma } from "../../prisma.config";
+import { prisma } from "../../prisma";
 
 dotenv.config();
 
