@@ -213,7 +213,7 @@ const main = async () => {
   drizzle = drzl(pool);
 
   await run();
-  process.exit(0)
+  process.exit(0);
 };
 
 main();

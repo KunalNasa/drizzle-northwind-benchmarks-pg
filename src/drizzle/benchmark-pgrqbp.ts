@@ -2,7 +2,7 @@ import { run, bench } from "mitata";
 import Docker from "dockerode";
 import { v4 as uuid } from "uuid";
 import getPort from "get-port";
-import { asc, eq, ilike, placeholder } from "drizzle-orm";
+import { asc, eq, ilike } from "drizzle-orm";
 import dotenv from "dotenv";
 import { sql } from "drizzle-orm";
 import * as fs from "fs";
@@ -26,7 +26,7 @@ import {
   supplierIds,
 } from "../common/meta";
 import { alias } from "drizzle-orm/pg-core";
-import { NodePgDatabase, drizzle as drzl } from "drizzle-orm/node-postgres";
+import { drizzle as drzl } from "drizzle-orm/node-postgres";
 import * as pg from "pg";
 const { Pool } = pg.default;
 
@@ -75,7 +75,7 @@ bench("Customers: getAll", async () => {
 
 const p2 = drizzle.query.customers
   .findFirst({
-    where: eq(customers.id, placeholder("id")),
+    where: eq(customers.id, sql.placeholder("id")),
   })
   .prepare("p2");
 bench("Customers: get by id", async () => {
@@ -86,7 +86,7 @@ bench("Customers: get by id", async () => {
 
 const p3 = drizzle.query.customers
   .findMany({
-    where: ilike(customers.companyName, placeholder("term")),
+    where: ilike(customers.companyName, sql.placeholder("term")),
   })
   .prepare("p3");
 bench("Customers: search", async () => {
@@ -106,7 +106,7 @@ const p5 = drizzle.query.employees
     with: {
       recipient: true,
     },
-    where: eq(employees.id, placeholder("id")),
+    where: eq(employees.id, sql.placeholder("id")),
   })
   .prepare("p5");
 
@@ -125,7 +125,7 @@ bench("Suppliers: getAll", async () => {
 
 const p7 = drizzle.query.suppliers
   .findFirst({
-    where: eq(suppliers.id, placeholder("id")),
+    where: eq(suppliers.id, sql.placeholder("id")),
   })
   .prepare("p7");
 bench("Suppliers: get by id", async () => {
@@ -141,7 +141,7 @@ bench("Products: getAll", async () => {
 
 const p9 = drizzle.query.products
   .findMany({
-    where: eq(products.id, placeholder("id")),
+    where: eq(products.id, sql.placeholder("id")),
     with: {
       supplier: true,
     },
@@ -155,7 +155,7 @@ bench("Products: get by id", async () => {
 
 const p10 = drizzle.query.products
   .findMany({
-    where: ilike(products.name, placeholder("term")),
+    where: ilike(products.name, sql.placeholder("term")),
   })
   .prepare("p10");
 bench("Products: search", async () => {
@@ -200,7 +200,7 @@ const p12 = drizzle
   })
   .from(orders)
   .leftJoin(details, eq(orders.id, details.orderId))
-  .where(eq(orders.id, placeholder("id")))
+  .where(eq(orders.id, sql.placeholder("id")))
   .groupBy(orders.id)
   .orderBy(asc(orders.id))
   .prepare("p12");
@@ -220,7 +220,7 @@ const p13 = drizzle.query.orders
         },
       },
     },
-    where: eq(orders.id, placeholder("id")),
+    where: eq(orders.id, sql.placeholder("id")),
   })
   .prepare("p13");
 

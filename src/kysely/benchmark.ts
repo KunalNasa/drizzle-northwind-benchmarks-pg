@@ -83,7 +83,7 @@ bench("Kysely ORM Employees: getInfo", async () => {
           ])
           .as("e2"),
         "e2.e2_id",
-        "e1.recipient_id"
+        "e1.recipient_id",
       )
       .execute();
   }
@@ -128,7 +128,7 @@ bench("Kysely ORM Products: getInfo", async () => {
           ])
           .as("s1"),
         "s1.s_id",
-        "products.supplier_id"
+        "products.supplier_id",
       )
       .execute();
   }
@@ -202,7 +202,7 @@ bench("Kysely ORM Orders: getInfo", async () => {
           ])
           .as("od"),
         "od.order_id",
-        "orders.id"
+        "orders.id",
       )
       .leftJoin(
         db
@@ -220,7 +220,7 @@ bench("Kysely ORM Orders: getInfo", async () => {
           ])
           .as("p"),
         "p.p_id",
-        "od.product_id"
+        "od.product_id",
       )
       .execute();
   }
