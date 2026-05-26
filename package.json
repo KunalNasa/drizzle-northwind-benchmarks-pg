@@ -19,12 +19,12 @@
     "@mikro-orm/reflection": "^7.1.1",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
-    "dotenv": "^16.0.3",
+    "dotenv": "^17.4.2",
     "drizzle-orm": "0.45.2",
-    "get-port": "^6.1.2",
+    "get-port": "^7.2.0",
     "knex": "^3.2.10",
     "kysely": "^0.29.2",
-    "mitata": "^0.1.6",
+    "mitata": "^1.0.34",
     "pg": "^8.21.0",
     "pg-native": "^3.8.0",
     "postgres": "^3.3.5",
@@ -34,10 +34,10 @@
   },
   "devDependencies": {
     "@balena/dockerignore": "^1.0.2",
-    "@types/dockerode": "^3.3.14",
+    "@types/dockerode": "^4.0.1",
     "@types/pg": "^8.10.2",
-    "@types/uuid": "^9.0.0",
-    "dockerode": "^3.3.4",
-    "tsx": "^3.12.2"
+    "@types/uuid": "^11.0.0",
+    "dockerode": "^5.0.0",
+    "tsx": "^4.22.3"
   }
 }
