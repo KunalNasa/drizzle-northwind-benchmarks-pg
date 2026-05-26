@@ -877,7 +877,9 @@ group("SELECT * FROM product LEFT JOIN supplier WHERE product.id = ?", () => {
         where: {
           id,
         },
-        relations: ["supplier"],
+        relations: {
+          supplier: true,
+        },
       });
     }
   });
@@ -1904,7 +1906,11 @@ group("SELECT * FROM order_detail WHERE order_id = ?", () => {
   bench("typeorm", async () => {
     for (const id of orderIds) {
       await typeorm.getRepository(Order).find({
-        relations: ["details", "details.product"],
+        relations: {
+          details: {
+            product: true,
+          },
+        },
         where: {
           id,
         },
