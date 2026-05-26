@@ -19,7 +19,7 @@
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "dotenv": "^16.0.3",
-    "drizzle-orm": "0.27.3-0ea6f8c",
+    "drizzle-orm": "0.45.2",
     "get-port": "^6.1.2",
     "knex": "^2.5.1",
     "kysely": "^0.26.1",
