@@ -10,13 +10,13 @@ dependencies:
     version: 5.7.14(@mikro-orm/postgresql@5.7.14)
   '@mikro-orm/postgresql':
     specifier: ^5.7.14
-    version: 5.7.14(@mikro-orm/core@5.7.14)(pg-native@3.0.1)
+    version: 5.7.14(@mikro-orm/core@5.7.14)(pg-native@3.8.0)
   '@mikro-orm/reflection':
     specifier: ^5.7.14
     version: 5.7.14(@mikro-orm/core@5.7.14)
   '@prisma/adapter-pg':
     specifier: ^7.8.0
-    version: 7.8.0(pg-native@3.0.1)
+    version: 7.8.0(pg-native@3.8.0)
   '@prisma/client':
     specifier: ^7.8.0
     version: 7.8.0(prisma@7.8.0)
@@ -31,7 +31,7 @@ dependencies:
     version: 6.1.2
   knex:
     specifier: ^2.5.1
-    version: 2.5.1(pg-native@3.0.1)(pg@8.21.0)
+    version: 2.5.1(pg-native@3.8.0)(pg@8.21.0)
   kysely:
     specifier: ^0.29.2
     version: 0.29.2
@@ -40,10 +40,10 @@ dependencies:
     version: 0.1.6
   pg:
     specifier: ^8.21.0
-    version: 8.21.0(pg-native@3.0.1)
+    version: 8.21.0(pg-native@3.8.0)
   pg-native:
-    specifier: ^3.0.1
-    version: 3.0.1
+    specifier: ^3.8.0
+    version: 3.8.0
   postgres:
     specifier: ^3.3.5
     version: 3.4.9
@@ -52,7 +52,7 @@ dependencies:
     version: 7.8.0(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)
   typeorm:
     specifier: ^1.0.0
-    version: 1.0.0(pg-native@3.0.1)(pg@8.21.0)
+    version: 1.0.0(pg-native@3.8.0)(pg@8.21.0)
   uuid:
     specifier: ^9.0.0
     version: 9.0.0
@@ -192,7 +192,7 @@ packages:
       '@mikro-orm/sqlite':
         optional: true
     dependencies:
-      '@mikro-orm/postgresql': 5.7.14(@mikro-orm/core@5.7.14)(pg-native@3.0.1)
+      '@mikro-orm/postgresql': 5.7.14(@mikro-orm/core@5.7.14)(pg-native@3.8.0)
       acorn-loose: 8.3.0
       acorn-walk: 8.2.0
       dotenv: 16.3.1
@@ -202,7 +202,7 @@ packages:
       reflect-metadata: 0.1.13
     dev: false
 
-  /@mikro-orm/knex@5.7.14(@mikro-orm/core@5.7.14)(pg-native@3.0.1)(pg@8.11.1):
+  /@mikro-orm/knex@5.7.14(@mikro-orm/core@5.7.14)(pg-native@3.8.0)(pg@8.11.1):
     resolution: {integrity: sha512-dLw80JiOfQ6YBtKXI3j0C31lYfbWlytZUpXFM4tEKlMbAMmSbPqDgZpiF3luxBKTg3JpsnGSK0urBOxL1c/m+g==}
     engines: {node: '>= 14.0.0'}
     peerDependencies:
@@ -235,8 +235,8 @@ packages:
     dependencies:
       '@mikro-orm/core': 5.7.14(@mikro-orm/postgresql@5.7.14)
       fs-extra: 11.1.1
-      knex: 2.5.1(pg-native@3.0.1)(pg@8.11.1)
-      pg: 8.11.1(pg-native@3.0.1)
+      knex: 2.5.1(pg-native@3.8.0)(pg@8.11.1)
+      pg: 8.11.1(pg-native@3.8.0)
       sqlstring: 2.3.3
     transitivePeerDependencies:
       - pg-native
@@ -244,7 +244,7 @@ packages:
       - tedious
     dev: false
 
-  /@mikro-orm/postgresql@5.7.14(@mikro-orm/core@5.7.14)(pg-native@3.0.1):
+  /@mikro-orm/postgresql@5.7.14(@mikro-orm/core@5.7.14)(pg-native@3.8.0):
     resolution: {integrity: sha512-3nF/UtUZ9a8jj0bD7ONeLRLg5MIHNKJngl7yR3c8sRz9yTAX6bT0lttbCxCeL4Q6/5XdcDtjgAQMUrYx1QVPhQ==}
     engines: {node: '>= 14.0.0'}
     peerDependencies:
@@ -261,8 +261,8 @@ packages:
         optional: true
     dependencies:
       '@mikro-orm/core': 5.7.14(@mikro-orm/postgresql@5.7.14)
-      '@mikro-orm/knex': 5.7.14(@mikro-orm/core@5.7.14)(pg-native@3.0.1)(pg@8.11.1)
-      pg: 8.11.1(pg-native@3.0.1)
+      '@mikro-orm/knex': 5.7.14(@mikro-orm/core@5.7.14)(pg-native@3.8.0)(pg@8.11.1)
+      pg: 8.11.1(pg-native@3.8.0)
     transitivePeerDependencies:
       - better-sqlite3
       - mssql
@@ -306,12 +306,12 @@ packages:
       fastq: 1.15.0
     dev: false
 
-  /@prisma/adapter-pg@7.8.0(pg-native@3.0.1):
+  /@prisma/adapter-pg@7.8.0(pg-native@3.8.0):
     resolution: {integrity: sha512-ygb3UkerK3v8MDpXVgCISdRNDozpxh6+JVJgiIGbSr5KBgz10LLf5ejUskPGoXlsIjxsOu6nuy1JVQr2EKGSlg==}
     dependencies:
       '@prisma/driver-adapter-utils': 7.8.0
       '@types/pg': 8.20.0
-      pg: 8.21.0(pg-native@3.0.1)
+      pg: 8.21.0(pg-native@3.8.0)
       postgres-array: 3.0.4
     transitivePeerDependencies:
       - pg-native
@@ -822,10 +822,6 @@ packages:
     resolution: {integrity: sha512-ysOGlgTFbN2/Y6Cg3Iye8YKulHw+R2fNXHrgSmXISQdMnomY6eNDprVdW9R5xBguEqI954+S6709UyiO7B+6OQ==}
     dev: false
 
-  /core-util-is@1.0.3:
-    resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
-    dev: false
-
   /cpu-features@0.0.10:
     resolution: {integrity: sha512-9IkYqtX3YHPCzoVg1Py+o9057a3i0fp7S530UWokCSaFVTc7CwXPRiOjRjBQQ18ZCNafx78YfnG+HALxtVmOGA==}
     engines: {node: '>=10.0.0'}
@@ -1043,9 +1039,9 @@ packages:
       '@electric-sql/pglite': 0.4.1
       '@prisma/client': 7.8.0(prisma@7.8.0)
       '@types/pg': 8.10.2
-      knex: 2.5.1(pg-native@3.0.1)(pg@8.21.0)
+      knex: 2.5.1(pg-native@3.8.0)(pg@8.21.0)
       kysely: 0.29.2
-      pg: 8.21.0(pg-native@3.0.1)
+      pg: 8.21.0(pg-native@3.8.0)
       postgres: 3.4.9
       prisma: 7.8.0(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)
     dev: false
@@ -1506,6 +1502,7 @@ packages:
 
   /inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
+    dev: true
 
   /interpret@2.2.0:
     resolution: {integrity: sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==}
@@ -1539,10 +1536,6 @@ packages:
     resolution: {integrity: sha512-Ks/IoX00TtClbGQr4TWXemAnktAQvYB7HzcCxDGqEZU6oCmb2INHuOoKxbtR+HFkmYWBKv/dOZtGRiAjDhj92g==}
     dev: false
 
-  /isarray@0.0.1:
-    resolution: {integrity: sha512-D2S+3GLxWH+uhrNEcoh/fnmYeP8E8/zHl644d/jdA0g2uyXvy3sb0qxotE+ne0LtccHknQzWwZEzhak7oJ0COQ==}
-    dev: false
-
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: false
@@ -1564,7 +1557,7 @@ packages:
       graceful-fs: 4.2.10
     dev: false
 
-  /knex@2.5.1(pg-native@3.0.1)(pg@8.11.1):
+  /knex@2.5.1(pg-native@3.8.0)(pg@8.11.1):
     resolution: {integrity: sha512-z78DgGKUr4SE/6cm7ku+jHvFT0X97aERh/f0MUKAKgFnwCYBEW4TFBqtHWFYiJFid7fMrtpZ/gxJthvz5mEByA==}
     engines: {node: '>=12'}
     hasBin: true
@@ -1601,9 +1594,9 @@ packages:
       getopts: 2.3.0
       interpret: 2.2.0
       lodash: 4.17.21
-      pg: 8.11.1(pg-native@3.0.1)
+      pg: 8.11.1(pg-native@3.8.0)
       pg-connection-string: 2.6.1
-      pg-native: 3.0.1
+      pg-native: 3.8.0
       rechoir: 0.8.0
       resolve-from: 5.0.0
       tarn: 3.0.2
@@ -1612,7 +1605,7 @@ packages:
       - supports-color
     dev: false
 
-  /knex@2.5.1(pg-native@3.0.1)(pg@8.21.0):
+  /knex@2.5.1(pg-native@3.8.0)(pg@8.21.0):
     resolution: {integrity: sha512-z78DgGKUr4SE/6cm7ku+jHvFT0X97aERh/f0MUKAKgFnwCYBEW4TFBqtHWFYiJFid7fMrtpZ/gxJthvz5mEByA==}
     engines: {node: '>=12'}
     hasBin: true
@@ -1649,9 +1642,9 @@ packages:
       getopts: 2.3.0
       interpret: 2.2.0
       lodash: 4.17.21
-      pg: 8.21.0(pg-native@3.0.1)
+      pg: 8.21.0(pg-native@3.8.0)
       pg-connection-string: 2.6.1
-      pg-native: 3.0.1
+      pg-native: 3.8.0
       rechoir: 0.8.0
       resolve-from: 5.0.0
       tarn: 3.0.2
@@ -1665,12 +1658,12 @@ packages:
     engines: {node: '>=22.0.0'}
     dev: false
 
-  /libpq@1.8.12:
-    resolution: {integrity: sha512-4lUY9BD9suz76mVS0kH4rRgRy620g/c9YZH5GYC3smfIpjtj6KiPuQ4IwQSHSZMMMhMM3tBFrYUrw8mHOOZVeg==}
+  /libpq@1.11.0:
+    resolution: {integrity: sha512-mHoPlvMwYDMJV36bS2w3eSdFD4eDSm7P9FsvruUldQxzE23/W6qitT9VU/yD1+g2vpgpDktnk2iEYJyhy1RR5g==}
     requiresBuild: true
     dependencies:
       bindings: 1.5.0
-      nan: 2.17.0
+      nan: 2.26.2
     dev: false
 
   /lodash@4.17.21:
@@ -1754,9 +1747,8 @@ packages:
       lru.min: 1.1.4
     dev: false
 
-  /nan@2.17.0:
-    resolution: {integrity: sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==}
-    requiresBuild: true
+  /nan@2.26.2:
+    resolution: {integrity: sha512-0tTvBTYkt3tdGw22nrAy50x7gpbGCCFH3AFcyS5WiUu7Eu4vWlri1woE6qHBSfy11vksDqkiwjOnlR7WV8G1Hw==}
     dev: false
 
   /nan@2.27.0:
@@ -1826,12 +1818,11 @@ packages:
     resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
     engines: {node: '>=4.0.0'}
 
-  /pg-native@3.0.1:
-    resolution: {integrity: sha512-LBVNWkNh0fVx/cienARRP2y22J5OpUsKBe0TpxzAx3arEUUdIs77aLSAHS3scS7SMaqc+OkG40CEu5fN0/cjIw==}
+  /pg-native@3.8.0:
+    resolution: {integrity: sha512-AYSHGrkB4NOX7stBvWZvMA2fQ+Lgq9z3dnqJ9VRJcVpgMuErvM9RxbbCgJZjFvaKNLUyAGhu3Eino76DSPdNEA==}
     dependencies:
-      libpq: 1.8.12
-      pg-types: 1.13.0
-      readable-stream: 1.0.31
+      libpq: 1.11.0
+      pg-types: 2.2.0
     dev: false
 
   /pg-numeric@1.0.2:
@@ -1843,7 +1834,7 @@ packages:
     peerDependencies:
       pg: '>=8.0'
     dependencies:
-      pg: 8.21.0(pg-native@3.0.1)
+      pg: 8.21.0(pg-native@3.8.0)
     dev: false
 
   /pg-pool@3.6.1(pg@8.11.1):
@@ -1851,7 +1842,7 @@ packages:
     peerDependencies:
       pg: '>=8.0'
     dependencies:
-      pg: 8.11.1(pg-native@3.0.1)
+      pg: 8.11.1(pg-native@3.8.0)
     dev: false
 
   /pg-protocol@1.14.0:
@@ -1860,16 +1851,6 @@ packages:
 
   /pg-protocol@1.6.0:
     resolution: {integrity: sha512-M+PDm637OY5WM307051+bsDia5Xej6d9IR4GwJse1qA1DIhiKlksvrneZOYQq42OM+spubpcNYEo2FcKQrDk+Q==}
-
-  /pg-types@1.13.0:
-    resolution: {integrity: sha512-lfKli0Gkl/+za/+b6lzENajczwZHc7D5kiUCZfgm914jipD2kIOIvEkAhZ8GrW3/TUoP9w8FHjwpPObBye5KQQ==}
-    dependencies:
-      pg-int8: 1.0.1
-      postgres-array: 1.0.3
-      postgres-bytea: 1.0.0
-      postgres-date: 1.0.7
-      postgres-interval: 1.2.0
-    dev: false
 
   /pg-types@2.2.0:
     resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
@@ -1894,7 +1875,7 @@ packages:
       postgres-interval: 3.0.0
       postgres-range: 1.1.3
 
-  /pg@8.11.1(pg-native@3.0.1):
+  /pg@8.11.1(pg-native@3.8.0):
     resolution: {integrity: sha512-utdq2obft07MxaDg0zBJI+l/M3mBRfIpEN3iSemsz0G5F2/VXx+XzqF4oxrbIZXQxt2AZzIUzyVg/YM6xOP/WQ==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
@@ -1906,7 +1887,7 @@ packages:
       buffer-writer: 2.0.0
       packet-reader: 1.0.0
       pg-connection-string: 2.6.1
-      pg-native: 3.0.1
+      pg-native: 3.8.0
       pg-pool: 3.6.1(pg@8.11.1)
       pg-protocol: 1.6.0
       pg-types: 2.2.0
@@ -1915,7 +1896,7 @@ packages:
       pg-cloudflare: 1.4.0
     dev: false
 
-  /pg@8.21.0(pg-native@3.0.1):
+  /pg@8.21.0(pg-native@3.8.0):
     resolution: {integrity: sha512-AUP1EYJuHraQGsVoCQVIcM7TEJVGtDzxWtGFZd8rds9d+CCXlU5Js1rYgfLNvxy9iJrpHjGrRjoi/3BT9fRyiA==}
     engines: {node: '>= 16.0.0'}
     peerDependencies:
@@ -1925,7 +1906,7 @@ packages:
         optional: true
     dependencies:
       pg-connection-string: 2.13.0
-      pg-native: 3.0.1
+      pg-native: 3.8.0
       pg-pool: 3.14.0(pg@8.21.0)
       pg-protocol: 1.14.0
       pg-types: 2.2.0
@@ -1958,11 +1939,6 @@ packages:
       pathe: 2.0.3
     dev: false
 
-  /postgres-array@1.0.3:
-    resolution: {integrity: sha512-5wClXrAP0+78mcsNX3/ithQ5exKvCyK5lr5NEEEeGwwM6NJdQgzIJBVxLvRW+huFpX92F2QnZ5CcokH0VhK2qQ==}
-    engines: {node: '>=0.10.0'}
-    dev: false
-
   /postgres-array@2.0.0:
     resolution: {integrity: sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==}
     engines: {node: '>=4'}
@@ -1975,11 +1951,6 @@ packages:
   /postgres-array@3.0.4:
     resolution: {integrity: sha512-nAUSGfSDGOaOAEGwqsRY27GPOea7CNipJPOA7lPbdEpx5Kg3qzdP0AaWC5MlhTWV9s4hFX39nomVZ+C4tnGOJQ==}
     engines: {node: '>=12'}
-    dev: false
-
-  /postgres-bytea@1.0.0:
-    resolution: {integrity: sha512-xy3pmLuQqRBZBXDULy7KbaitYqLcmxigw14Q5sj8QBVLqEwXfeybIKVWiqAXTlcvdvb0+xkOtDbfQMOf4lST1w==}
-    engines: {node: '>=0.10.0'}
     dev: false
 
   /postgres-bytea@1.0.1:
@@ -2096,15 +2067,6 @@ packages:
   /react@19.2.6:
     resolution: {integrity: sha512-sfWGGfavi0xr8Pg0sVsyHMAOziVYKgPLNrS7ig+ivMNb3wbCBw3KxtflsGBAwD3gYQlE/AEZsTLgToRrSCjb0Q==}
     engines: {node: '>=0.10.0'}
-    dev: false
-
-  /readable-stream@1.0.31:
-    resolution: {integrity: sha512-tco/Dwv1f/sgIgN6CWdj/restacPKNskK6yps1981ivH2ZmLYcs5o5rVzL3qaO/cSkhN8hYOMWs7+glzOLSgRg==}
-    dependencies:
-      core-util-is: 1.0.3
-      inherits: 2.0.4
-      isarray: 0.0.1
-      string_decoder: 0.10.31
     dev: false
 
   /readable-stream@3.6.0:
@@ -2272,10 +2234,6 @@ packages:
       strip-ansi: 7.2.0
     dev: false
 
-  /string_decoder@0.10.31:
-    resolution: {integrity: sha512-ev2QzSzWPYmy9GuqfIVildA4OdcGLeFZQrq5ys6RtiuF+RQQiZWr8TZNyAcuVXyQRYfEO+MsoB/1BuQVhOJuoQ==}
-    dev: false
-
   /string_decoder@1.3.0:
     resolution: {integrity: sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==}
     dependencies:
@@ -2365,7 +2323,7 @@ packages:
     resolution: {integrity: sha512-KXXFFdAbFXY4geFIwoyNK+f5Z1b7swfXABfL7HXCmoIWMKU3dmS26672A4EeQtDzLKy7SXmfBu51JolvEKwtGA==}
     dev: true
 
-  /typeorm@1.0.0(pg-native@3.0.1)(pg@8.21.0):
+  /typeorm@1.0.0(pg-native@3.8.0)(pg@8.21.0):
     resolution: {integrity: sha512-2mSKNqucP8vo+xQLP59xlHUcqLvG6qajxA7q7tnhJgeZjTrA6lK/Ar7LRyiAxdXhyXmGbIPsArPmcUB9Xg+M7w==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24.11.0}
     hasBin: true
@@ -2422,8 +2380,8 @@ packages:
       dayjs: 1.11.21
       debug: 4.4.3
       dedent: 1.7.2
-      pg: 8.21.0(pg-native@3.0.1)
-      pg-native: 3.0.1
+      pg: 8.21.0(pg-native@3.8.0)
+      pg-native: 3.8.0
       reflect-metadata: 0.2.2
       sql-highlight: 6.1.0
       tinyglobby: 0.2.16
