@@ -105,7 +105,7 @@ const drizzlePrepared = drzl(drizzlePreparedPool);
 
 // mikro connect
 const mikroOrm = await MikroORM.init<PostgreSqlDriver>({
-  type: "postgresql",
+  driver: PostgreSqlDriver,
   host: DB_HOST,
   port: Number(DB_PORT || ports.mikroOrm),
   user: DB_USER,

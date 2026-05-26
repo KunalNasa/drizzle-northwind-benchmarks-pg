@@ -13,9 +13,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@mikro-orm/core": "^5.7.14",
-    "@mikro-orm/postgresql": "^5.7.14",
-    "@mikro-orm/reflection": "^5.7.14",
+    "@mikro-orm/core": "^7.1.1",
+    "@mikro-orm/decorators": "^7.1.1",
+    "@mikro-orm/postgresql": "^7.1.1",
+    "@mikro-orm/reflection": "^7.1.1",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "dotenv": "^16.0.3",

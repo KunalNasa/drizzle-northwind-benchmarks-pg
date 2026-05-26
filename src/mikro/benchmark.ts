@@ -1,8 +1,8 @@
-import { MikroORM, QueryOrder } from '@mikro-orm/core';
-import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
-import { PostgreSqlDriver, SqlEntityManager } from '@mikro-orm/postgresql';
+import { MikroORM, QueryOrder } from "@mikro-orm/core";
+import { TsMorphMetadataProvider } from "@mikro-orm/reflection";
+import { PostgreSqlDriver, SqlEntityManager } from "@mikro-orm/postgresql";
 import { run, bench } from "mitata";
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 import {
   customerIds,
   employeeIds,
@@ -19,10 +19,10 @@ import { Order } from "./entities/orders";
 import { Product } from "./entities/products";
 import { Supplier } from "./entities/suppliers";
 
-dotenv.config()
+dotenv.config();
 const { DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD } = process.env;
 
-let mikro:SqlEntityManager<PostgreSqlDriver>;
+let mikro: SqlEntityManager<PostgreSqlDriver>;
 
 bench("MikroORM Customers: getAll", async () => {
   await mikro.find(Customer, {});
@@ -82,13 +82,9 @@ bench("MikroORM Products: search", async () => {
 });
 
 bench("MikroORM Orders: getAll", async () => {
-  const result = await mikro.find(
-    Order,
-    {},
-    { populate: ["details"] }
-  )
+  const result = await mikro.find(Order, {}, { populate: ["details"] });
   const orders = result.map((item) => {
-    const details = item.details.toArray()
+    const details = item.details.toArray();
     return {
       id: item.id,
       shippedDate: item.shippedDate,
@@ -98,11 +94,11 @@ bench("MikroORM Orders: getAll", async () => {
       productsCount: item.details.length,
       quantitySum: details.reduce(
         (sum, deteil) => (sum += +deteil.quantity),
-        0
+        0,
       ),
       totalPrice: details.reduce(
         (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-        0
+        0,
       ),
     };
   });
@@ -110,13 +106,13 @@ bench("MikroORM Orders: getAll", async () => {
 
 bench("MikroORM Orders: getById", async () => {
   for (const id of orderIds) {
-  const result = await mikro.findOne(
-    Order,
-    { id },
-    { populate: ["details"] }
-  )
-  const deteils = result!.details.getItems()
-  const order = {
+    const result = await mikro.findOne(
+      Order,
+      { id },
+      { populate: ["details"] },
+    );
+    const deteils = result!.details.getItems();
+    const order = {
       id: result!.id,
       shippedDate: result!.shippedDate,
       shipName: result!.shipName,
@@ -125,14 +121,14 @@ bench("MikroORM Orders: getById", async () => {
       productsCount: result!.details.length,
       quantitySum: deteils.reduce(
         (sum, deteil) => (sum += +deteil.quantity),
-        0
+        0,
       ),
       totalPrice: deteils.reduce(
         (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-        0
+        0,
       ),
     };
-}
+  }
 });
 
 bench("MikroORM Orders: getInfo", async () => {
@@ -140,7 +136,7 @@ bench("MikroORM Orders: getInfo", async () => {
     await mikro.find(
       Order,
       { id },
-      { populate: ["details", "details.product"] }
+      { populate: ["details", "details.product"] },
     );
   }
   mikro.clear();
@@ -148,7 +144,7 @@ bench("MikroORM Orders: getInfo", async () => {
 
 const main = async () => {
   const orm = await MikroORM.init<PostgreSqlDriver>({
-    type: 'postgresql',
+    driver: PostgreSqlDriver,
     host: DB_HOST,
     port: +DB_PORT!,
     user: DB_USER,
@@ -163,26 +159,23 @@ const main = async () => {
   const result = await mikro.findOne(
     Order,
     { id: "10248" },
-    { populate: ["details"] }
-  )
+    { populate: ["details"] },
+  );
   console.log(result);
-  
-  const deteils = result!.details.getItems()
+
+  const deteils = result!.details.getItems();
   const order = {
-      id: result!.id,
-      shippedDate: result!.shippedDate,
-      shipName: result!.shipName,
-      shipCity: result!.shipCity,
-      shipCountry: result!.shipCountry,
-      productsCount: result!.details.length,
-      quantitySum: deteils.reduce(
-        (sum, deteil) => (sum += +deteil.quantity),
-        0
-      ),
-      totalPrice: deteils.reduce(
-        (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-        0
-      ),
-    };
+    id: result!.id,
+    shippedDate: result!.shippedDate,
+    shipName: result!.shipName,
+    shipCity: result!.shipCity,
+    shipCountry: result!.shipCountry,
+    productsCount: result!.details.length,
+    quantitySum: deteils.reduce((sum, deteil) => (sum += +deteil.quantity), 0),
+    totalPrice: deteils.reduce(
+      (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
+      0,
+    ),
+  };
 };
 main();
