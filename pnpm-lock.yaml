@@ -25,7 +25,7 @@ dependencies:
     version: 16.0.3
   drizzle-orm:
     specifier: 0.45.2
-    version: 0.45.2(@electric-sql/pglite@0.4.1)(@prisma/client@7.8.0)(@types/pg@8.10.2)(knex@2.5.1)(kysely@0.26.1)(pg@8.11.2)(postgres@3.4.9)(prisma@7.8.0)
+    version: 0.45.2(@electric-sql/pglite@0.4.1)(@prisma/client@7.8.0)(@types/pg@8.10.2)(knex@2.5.1)(kysely@0.29.2)(pg@8.11.2)(postgres@3.4.9)(prisma@7.8.0)
   get-port:
     specifier: ^6.1.2
     version: 6.1.2
@@ -33,8 +33,8 @@ dependencies:
     specifier: ^2.5.1
     version: 2.5.1(pg-native@3.0.1)(pg@8.11.2)
   kysely:
-    specifier: ^0.26.1
-    version: 0.26.1
+    specifier: ^0.29.2
+    version: 0.29.2
   mitata:
     specifier: ^0.1.6
     version: 0.1.6
@@ -948,7 +948,7 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /drizzle-orm@0.45.2(@electric-sql/pglite@0.4.1)(@prisma/client@7.8.0)(@types/pg@8.10.2)(knex@2.5.1)(kysely@0.26.1)(pg@8.11.2)(postgres@3.4.9)(prisma@7.8.0):
+  /drizzle-orm@0.45.2(@electric-sql/pglite@0.4.1)(@prisma/client@7.8.0)(@types/pg@8.10.2)(knex@2.5.1)(kysely@0.29.2)(pg@8.11.2)(postgres@3.4.9)(prisma@7.8.0):
     resolution: {integrity: sha512-kY0BSaTNYWnoDMVoyY8uxmyHjpJW1geOmBMdSSicKo9CIIWkSxMIj2rkeSR51b8KAPB7m+qysjuHme5nKP+E5Q==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
@@ -1044,7 +1044,7 @@ packages:
       '@prisma/client': 7.8.0(prisma@7.8.0)
       '@types/pg': 8.10.2
       knex: 2.5.1(pg-native@3.0.1)(pg@8.11.2)
-      kysely: 0.26.1
+      kysely: 0.29.2
       pg: 8.11.2(pg-native@3.0.1)
       postgres: 3.4.9
       prisma: 7.8.0(@types/react@19.2.15)(react-dom@19.2.6)(react@19.2.6)
@@ -1660,9 +1660,9 @@ packages:
       - supports-color
     dev: false
 
-  /kysely@0.26.1:
-    resolution: {integrity: sha512-FVRomkdZofBu3O8SiwAOXrwbhPZZr8mBN5ZeUWyprH29jzvy6Inzqbd0IMmGxpd4rcOCL9HyyBNWBa8FBqDAdg==}
-    engines: {node: '>=14.0.0'}
+  /kysely@0.29.2:
+    resolution: {integrity: sha512-s6WVJyEZrbm6jhBpiKHsGHyePMrVQKJ85wZCFCr9W4QHv6WTjWIrdvTmO9hDEA3bNK0xkrE2DqrHsXMLWuZpQg==}
+    engines: {node: '>=22.0.0'}
     dev: false
 
   /libpq@1.8.12:
