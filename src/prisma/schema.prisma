@@ -6,7 +6,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DB_PRISMA_URL")
 }
 
 model Customer {
@@ -78,7 +77,6 @@ model Detail {
   productId String  @map("product_id") @db.VarChar()
   order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-
 
   @@id([orderId, productId])
   @@map("order_details")

@@ -13,7 +13,6 @@ import { DataSource, ILike } from "typeorm";
 import { MikroORM } from "@mikro-orm/core";
 import { TsMorphMetadataProvider } from "@mikro-orm/reflection";
 import { PostgreSqlDriver } from "@mikro-orm/postgresql";
-import * as Prisma from "@prisma/client";
 
 import { Database } from "@/kysely/db";
 import { Customer } from "@/typeorm/entities/customers";
@@ -46,6 +45,7 @@ import {
   supplierIds,
 } from "./meta";
 import { createDockerDBs, ports, deleteDockerDBs, DockerDBs } from "@/utils";
+import { prisma } from "../../prisma.config";
 
 dotenv.config();
 
@@ -91,14 +91,14 @@ const pgjs = postgres({
 // drizzle connect
 const drizzlePool = postgres(
   process.env.DATABASE_URL ??
-    `postgres://postgres:postgres@localhost:${ports.drizzle}/postgres`
+    `postgres://postgres:postgres@localhost:${ports.drizzle}/postgres`,
 );
 const drizzle = drzl(drizzlePool);
 
 // drizzlePrepared  connect
 const drizzlePreparedPool = postgres(
   process.env.DATABASE_URL ??
-    `postgres://postgres:postgres@localhost:${ports.drizzlePrepared}/postgres`
+    `postgres://postgres:postgres@localhost:${ports.drizzlePrepared}/postgres`,
 );
 // await drizzlePreparedPool.connect();
 const drizzlePrepared = drzl(drizzlePreparedPool);
@@ -143,7 +143,6 @@ const kysely = new Kysely<Database>({
 });
 
 // prisma connect
-const prisma = new Prisma.PrismaClient();
 
 // typeorm connect
 const typeorm = new DataSource({
@@ -308,7 +307,7 @@ group("select * from customer where company_name ilike ?", () => {
     for (const it of customerSearches) {
       await pg.query(
         'select * from "customers" where "customers"."company_name" ilike $1',
-        [`%${it}%`]
+        [`%${it}%`],
       );
     }
   });
@@ -456,7 +455,7 @@ group("select * from employee where id = ? left join reportee", () => {
       await pg.query(
         `select "e1".*, "e2"."last_name" as "reports_lname", "e2"."first_name" as "reports_fname"
               from "employees" as "e1" left join "employees" as "e2" on "e2"."id" = "e1"."recipient_id" where "e1"."id" = $1`,
-        [id]
+        [id],
       );
     }
   });
@@ -552,7 +551,7 @@ group("select * from employee where id = ? left join reportee", () => {
             ])
             .as("e2"),
           "e2.e2_id",
-          "e1.recipient_id"
+          "e1.recipient_id",
         )
         .execute();
     }
@@ -775,7 +774,7 @@ group("SELECT * FROM product LEFT JOIN supplier WHERE product.id = ?", () => {
       await pg.query(
         `select "products".*, "suppliers".*
               from "products" left join "suppliers" on "products"."supplier_id" = "suppliers"."id" where "products"."id" = $1`,
-        [id]
+        [id],
       );
     }
   });
@@ -859,7 +858,7 @@ group("SELECT * FROM product LEFT JOIN supplier WHERE product.id = ?", () => {
             ])
             .as("s1"),
           "s1.s_id",
-          "products.supplier_id"
+          "products.supplier_id",
         )
         .execute();
     }
@@ -903,7 +902,7 @@ group("SELECT * FROM product WHERE product.name ILIKE ?", () => {
     for (const it of productSearches) {
       await pg.query(
         'select * from "products" where "products"."name" ilike $1',
-        [`%${it}%`]
+        [`%${it}%`],
       );
     }
   });
@@ -1092,11 +1091,11 @@ group("select all order with sum and count", () => {
         productsCount: item.details.length,
         quantitySum: details.reduce(
           (sum, deteil) => (sum += +deteil.quantity),
-          0
+          0,
         ),
         totalPrice: details.reduce(
           (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-          0
+          0,
         ),
       };
     });
@@ -1119,11 +1118,11 @@ group("select all order with sum and count", () => {
         productsCount: item.details.length,
         quantitySum: item.details.reduce(
           (sum, deteil) => (sum += +deteil.quantity),
-          0
+          0,
         ),
         totalPrice: item.details.reduce(
           (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-          0
+          0,
         ),
       };
     });
@@ -1145,11 +1144,11 @@ group("select all order with sum and count", () => {
         productsCount: item.details.length,
         quantitySum: item.details.reduce(
           (sum, deteil) => (sum += +deteil.quantity),
-          0
+          0,
         ),
         totalPrice: item.details.reduce(
           (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-          0
+          0,
         ),
       };
     });
@@ -1166,7 +1165,7 @@ group("select order with sum and count using limit with offset", () => {
         `select "id", "shipped_date", "ship_name", "ship_city", "ship_country", count("product_id") as "products",
       sum("quantity") as "quantity", sum("quantity" * "unit_price") as "total_price"
       from "orders" as "o" left join "order_details" as "od" on "od"."order_id" = "o"."id" group by "o"."id" ORDER BY o.id ASC limit $1 offset $2`,
-        [limit, offset]
+        [limit, offset],
       );
 
       offset += limit;
@@ -1304,7 +1303,7 @@ group("select order with sum and count using limit with offset", () => {
       const result = await mikro.find(
         m_Order,
         {},
-        { populate: ["details"], limit, offset, orderBy: { id: "ASC" } }
+        { populate: ["details"], limit, offset, orderBy: { id: "ASC" } },
       );
       const orders = result.map((item) => {
         const details = item.details.getItems();
@@ -1317,11 +1316,11 @@ group("select order with sum and count using limit with offset", () => {
           productsCount: item.details.length,
           quantitySum: details.reduce(
             (sum, deteil) => (sum += +deteil.quantity),
-            0
+            0,
           ),
           totalPrice: details.reduce(
             (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-            0
+            0,
           ),
         };
       });
@@ -1354,11 +1353,11 @@ group("select order with sum and count using limit with offset", () => {
           productsCount: item.details.length,
           quantitySum: item.details.reduce(
             (sum, deteil) => (sum += +deteil.quantity),
-            0
+            0,
           ),
           totalPrice: item.details.reduce(
             (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-            0
+            0,
           ),
         };
       });
@@ -1391,11 +1390,11 @@ group("select order with sum and count using limit with offset", () => {
           productsCount: item.details.length,
           quantitySum: item.details.reduce(
             (sum, deteil) => (sum += +deteil.quantity),
-            0
+            0,
           ),
           totalPrice: item.details.reduce(
             (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-            0
+            0,
           ),
         };
       });
@@ -1414,9 +1413,9 @@ group("select order where order.id = ? with sum and count", () => {
           `select "id", "shipped_date", "ship_name", "ship_city", "ship_country", count("product_id") as "products",
         sum("quantity") as "quantity", sum("quantity" * "unit_price") as "total_price"
         from "orders" as "o" left join "order_details" as "od" on "od"."order_id" = "o"."id" where "o"."id" = $1 group by "o"."id"`,
-          [id]
+          [id],
         );
-      })
+      }),
     );
     // for (const id of orderIds) {
     //   await pg.query(
@@ -1439,7 +1438,7 @@ group("select order where order.id = ? with sum and count", () => {
     await Promise.all(
       orderIds.map(async (id) => {
         await pgPrepared.query(query, [id]);
-      })
+      }),
     );
     // for (const id of orderIds) {
     //   await pg.query(query, [id]);
@@ -1465,7 +1464,7 @@ group("select order where order.id = ? with sum and count", () => {
           .leftJoin(details, eq(orders.id, details.orderId))
           .where(eq(orders.id, id))
           .groupBy(orders.id);
-      })
+      }),
     );
     // for (const id of orderIds) {
     //   await drizzle
@@ -1509,7 +1508,7 @@ group("select order where order.id = ? with sum and count", () => {
     await Promise.all(
       orderIds.map(async (id) => {
         await prepared.execute({ orderId: id });
-      })
+      }),
     );
   });
 
@@ -1532,7 +1531,7 @@ group("select order where order.id = ? with sum and count", () => {
             total_price: knexDb.raw("?? * ??", ["quantity", "unit_price"]),
           })
           .groupBy("orders.id");
-      })
+      }),
     );
     // for (const id of orderIds) {
     //   await knexDb("orders")
@@ -1571,7 +1570,7 @@ group("select order where order.id = ? with sum and count", () => {
           .where("orders.id", "=", id)
           .groupBy("orders.id")
           .execute();
-      })
+      }),
     );
 
     // for (const id of orderIds) {
@@ -1600,7 +1599,7 @@ group("select order where order.id = ? with sum and count", () => {
         const result = await mikro.findOne(
           m_Order,
           { id },
-          { populate: ["details"] }
+          { populate: ["details"] },
         );
         const details = result!.details.getItems();
         const order = {
@@ -1612,14 +1611,14 @@ group("select order where order.id = ? with sum and count", () => {
           productsCount: result!.details.length,
           quantitySum: details.reduce(
             (sum, deteil) => (sum += +deteil.quantity),
-            0
+            0,
           ),
           totalPrice: details.reduce(
             (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-            0
+            0,
           ),
         };
-      })
+      }),
     );
     // for (const id of orderIds) {
     //   const result = await mikro.findOne(
@@ -1667,14 +1666,14 @@ group("select order where order.id = ? with sum and count", () => {
           productsCount: result!.details.length,
           quantitySum: result!.details.reduce(
             (sum, deteil) => (sum += +deteil.quantity),
-            0
+            0,
           ),
           totalPrice: result!.details.reduce(
             (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-            0
+            0,
           ),
         };
-      })
+      }),
     );
     // for (const id of orderIds) {
     //   const result = await prisma.order.findFirst({
@@ -1724,14 +1723,14 @@ group("select order where order.id = ? with sum and count", () => {
           productsCount: result!.details.length,
           quantitySum: result!.details.reduce(
             (sum, deteil) => (sum += +deteil.quantity),
-            0
+            0,
           ),
           totalPrice: result!.details.reduce(
             (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-            0
+            0,
           ),
         };
-      })
+      }),
     );
     // for (const id of orderIds) {
     //   const result = await typeorm.getRepository(Order).findOne({
@@ -1771,7 +1770,7 @@ group("SELECT * FROM order_detail WHERE order_id = ?", () => {
             LEFT JOIN "order_details" AS od ON o.id = od.order_id
             LEFT JOIN "products" AS p ON od.product_id = p.id
             WHERE o.id = $1`,
-        [id]
+        [id],
       );
     }
   });
@@ -1867,7 +1866,7 @@ group("SELECT * FROM order_detail WHERE order_id = ?", () => {
             ])
             .as("od"),
           "od.order_id",
-          "orders.id"
+          "orders.id",
         )
         .leftJoin(
           kysely
@@ -1885,7 +1884,7 @@ group("SELECT * FROM order_detail WHERE order_id = ?", () => {
             ])
             .as("p"),
           "p.p_id",
-          "od.product_id"
+          "od.product_id",
         )
         .execute();
     }
@@ -1896,7 +1895,7 @@ group("SELECT * FROM order_detail WHERE order_id = ?", () => {
       await mikro.find(
         m_Order,
         { id },
-        { populate: ["details", "details.product"] }
+        { populate: ["details", "details.product"] },
       );
     }
     mikro.clear();

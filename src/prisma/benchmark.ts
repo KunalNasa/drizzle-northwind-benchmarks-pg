@@ -1,5 +1,4 @@
 import { run, bench } from "mitata";
-import * as Prisma from "@prisma/client";
 
 import {
   customerIds,
@@ -10,9 +9,7 @@ import {
   customerSearches,
   supplierIds,
 } from "../common/meta";
-import { products } from "../drizzle/schema";
-
-const prisma = new Prisma.PrismaClient();
+import { prisma } from "../../prisma.config";
 
 bench("Prisma ORM Customers: getAll", async () => {
   await prisma.customer.findMany();
@@ -117,11 +114,11 @@ bench("Prisma ORM Orders: getAll", async () => {
       productsCount: item.details.length,
       quantitySum: item.details.reduce(
         (sum, deteil) => (sum += +deteil.quantity),
-        0
+        0,
       ),
       totalPrice: item.details.reduce(
         (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-        0
+        0,
       ),
     };
   });
@@ -138,21 +135,21 @@ bench("Prisma ORM Orders: getById", async () => {
       },
     });
     const order = {
-        id: result!.id,
-        shippedDate: result!.shippedDate,
-        shipName: result!.shipName,
-        shipCity: result!.shipCity,
-        shipCountry: result!.shipCountry,
-        productsCount: result!.details.length,
-        quantitySum: result!.details.reduce(
-          (sum, deteil) => (sum += +deteil.quantity),
-          0
-        ),
-        totalPrice: result!.details.reduce(
-          (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
-          0
-        ),
-      };
+      id: result!.id,
+      shippedDate: result!.shippedDate,
+      shipName: result!.shipName,
+      shipCity: result!.shipCity,
+      shipCountry: result!.shipCountry,
+      productsCount: result!.details.length,
+      quantitySum: result!.details.reduce(
+        (sum, deteil) => (sum += +deteil.quantity),
+        0,
+      ),
+      totalPrice: result!.details.reduce(
+        (sum, deteil) => (sum += +deteil.quantity * +deteil.unitPrice),
+        0,
+      ),
+    };
   }
 });
 
